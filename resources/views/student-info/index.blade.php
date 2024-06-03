@@ -62,22 +62,21 @@
                                     @for ($i = $now; $i >= $last; $i--)
                                         <option value="{{ $i }}">{{ $i }}</option>
                                     @endfor
-                                </select>                           
+                                </select>
                             </div>
                             <div class="col-md-2">
                             <label for="sel2" class="form-label">Session:</label>
-                                <select  class="form-select" id="sel2" name="session">
-                                    @php if(!isset($session)) $session = ''; @endphp
-                                    @if(!empty($session))
-                                    <option value="{{ $session }}">{{ $session }}</option>
-                                    @endif
-                                    <option value="">---Select Session---</option>
-                                    <option>April</option>
-                                    <option>July</option>
-                                    <option>October</option>
-                                    <option>January</option>
-                                
-                                </select>
+                            <select  class="form-select" id="sel2" name="session">
+                                @php if(!isset($session)) $session = ''; @endphp
+                                @if(!empty($session))
+                                <option value="{{ $session }}">{{ $session }}</option>
+                                @endif
+                                <option value="">---Select Session---</option>
+                                <option>April</option>
+                                <option>July</option>
+                                <option>October</option>
+                                <option>January</option>
+                            </select>
                             
                             </div>
                             <div class="col-md-2"><br>
@@ -97,10 +96,11 @@
                                         <th>School Type</th>
                                         <th>School Name</th>
                                         <th>Apartment</th>
-                                        <th>Gender</th>
+                                        <!-- <th>Gender</th> -->
                                         <th>Contact</th>
                                         <th>Note</th>
                                         <th>Social Link</th>
+                                        <th>Resume</th>
                                         <th>Action</th>
                                     
                                     </tr>
@@ -113,18 +113,21 @@
                                             <td>{{ schoolTypeName($data->school_type_id)->school_type }}</td>
                                             <td>{{ schoolName($data->school_name_id)->school_name }}</td>
                                             <td>{{ $data->student_apartment }}</td>
-                                            <td>{{ $data->student_gender }}</td>
+                                            <!-- <td>{{ $data->student_gender }}</td> -->
                                             <td>{{ $data->student_contact_number }}</td>
                                             <td>Note</td>
                                             <!-- <td>{{ $data->student_graduation }}</td> -->
                                             <td>{{ $data->student_fb_id }}</td>
                                             <!-- <td>{{ $data->school_address_line_1 }} {{ $data->school_address_line_2 }}</td> -->
                                             <!-- <td>{{ $data->created_at }}</td> -->
-                                            <td>
+                                            <td><button type="button" class="btn btn-secondary">Resume</button></td>
+                                            <td style="width:150px !important">
                                                 <!-- <button type="button" class="btn btn-info">Edit</button> -->
-                                                <button type="button" class="btn btn-secondary">Resume</button>
-                                                <a href="{{ route('student_info.edit', $data->id) }}" class="btn btn-xs btn-info">Edit</a>
-                                                <button type="button" class="btn btn-danger">Delete</button>
+                                                
+                                                
+                                                <a href="{{ route('student_info.edit', $data->id) }}" class="btn btn-xs btn-success"><i class="fa-solid fa-eye"></i></a>
+                                                <a href="{{ route('student_info.edit', $data->id) }}" class="btn btn-xs btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach

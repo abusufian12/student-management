@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
@@ -11,9 +11,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <header>
                         <div class="p-6 text-gray-900 dark:text-gray-100">
-                            <h2 style="font-size 35px !important;">Student Information</h2>
-                            <a href="{{ route('student_info.index') }}" class="btn btn-xs btn-warning float-end">Back</a>
-                            <!-- <a href="{{ route('student_info.index') }}" class="btn btn-xs btn-primary float-end ms-2 mr-1">Upload Resume</a>&nbsp;&nbsp;&nbsp; -->
+                            <h2 style="font-size 35px !important;">Student Registration Form</h2>
                             <!-- Button to Open the Modal -->
                             <button type="button" class="btn btn-primary float-end ms-2 mr-1" data-bs-toggle="modal" data-bs-target="#myModal">
                             Upload Resume
@@ -22,7 +20,7 @@
 
                     </header>
 
-                    <form method="post" action="{{ route('student_info.store') }}" class="mt-6 space-y-6">
+                    <form method="post" action="{{ route('student_store') }}" class="mt-6 space-y-6">
                         @csrf
                         @method('post')
                         <div class="row">
@@ -164,4 +162,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-guest-layout>

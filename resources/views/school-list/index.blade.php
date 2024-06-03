@@ -68,11 +68,11 @@
                                 <td>{{ $data->school_city }}</td>
                                 <td>{{ $data->school_address_line_1 }} {{ $data->school_address_line_2 }}</td>
                                 <td>{{ $data->created_at }}</td>
-                                <td>
+                                <td style="width:120px !important">
                                     <!-- <button type="button" class="btn btn-info">Edit</button> -->
-                                    <a href="{{ route('school_list.edit', $data->id) }}" class="btn btn-xs btn-info">Edit</a>
+                                    <a href="{{ route('school_list.edit', $data->id) }}" class="btn btn-xs btn-info"><i class="fa-solid fa-pen-to-square"></i></a>
                                     <!-- <button type="button" class="btn btn-info">View</button> -->
-                                    <button type="button" class="btn btn-danger">Delete</button>
+                                    <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
                                 </td>
                             </tr>
                         @endforeach

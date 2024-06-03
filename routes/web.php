@@ -26,6 +26,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/student_registration', [StudentInfoController::class, 'studentRegistration'])->name('student_info.student_registration');
+Route::post('/student_store', [StudentInfoController::class, 'studentStore'])->name('student_store');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

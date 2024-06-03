@@ -21,5 +21,8 @@ class StudentInfo extends Model
         'student_apartment',
         'school_address_line_1',
         'school_address_line_2',
+        'session',
+        'year',
+        'resume_link',
     ];
 }

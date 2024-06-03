@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('school_address_line_2');
             $table->string('year');
             $table->string('session');
+            $table->string('resume_link');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

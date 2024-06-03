@@ -46,6 +46,11 @@ class StudentInfoController extends Controller
         return view('student-info.create');
     }
 
+    public function studentRegistration()
+    {
+        return view('student-info.student-registration');
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -69,9 +74,37 @@ class StudentInfoController extends Controller
             'session' => $request->session,
             'school_address_line_1' => $request->school_address_line_1,
             'school_address_line_2' => $request->school_address_line_2,
+            'resume_link' => $request->resume_link,
         ]);
 
         return redirect()->route('student_info.index', [$data]);
+    }
+
+    public function studentStore(Request $request)
+    {
+        $request->validate([
+            'student_name' => ['required', 'string', 'max:255']
+        ]);
+
+        $data = StudentInfo::create([
+            'school_type_id' => $request->school_type_id,
+            'school_name_id' => $request->school_name_id,
+            'student_name' => $request->student_name,
+            'student_gender' => $request->student_gender,
+            'student_contact_number' => $request->student_contact_number,
+            'student_graduation' => $request->student_graduation,
+            'student_fb_id' => $request->student_fb_id,
+            'student_country' => $request->student_country,
+            'student_apartment' => $request->student_apartment,
+            'year' => $request->year,
+            'session' => $request->session,
+            'school_address_line_1' => $request->school_address_line_1,
+            'school_address_line_2' => $request->school_address_line_2,
+            'resume_link' => $request->resume_link,
+        ]);
+
+        // return redirect()->route('/', [$data]);
+        return view('success');
     }
 
     /**
@@ -120,6 +153,7 @@ class StudentInfoController extends Controller
             'session' => $request->session,
             'school_address_line_1' => $request->school_address_line_1,
             'school_address_line_2' => $request->school_address_line_2,
+            'resume_link' => $request->resume_link,
         ]);
 
         return redirect()->route('student_info.index');

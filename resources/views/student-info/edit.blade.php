@@ -13,6 +13,9 @@
                         <div class="p-6 text-gray-900 dark:text-gray-100">
                             <h2>{{ __("School List") }}</h2>
                             <a href="{{ route('student_info.index') }}" class="btn btn-xs btn-warning float-end">Back</a>
+                            <button type="button" class="btn btn-primary float-end ms-2 mr-1" data-bs-toggle="modal" data-bs-target="#myModal">
+                                Upload Resume
+                            </button>
                         </div>
                     </header>
 
@@ -41,6 +44,37 @@
                                     @foreach ($school_list as $key => $school) 
                                     <option value="{{ $school->id }}">{{ $school->school_name }}</option>
                                     @endforeach 
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3 mt-3 ml-3">
+                                <x-input-label for="school_name_id" :value="__('School Name')" />
+                               
+                                <select id="year" name="year" class="form-control ">
+                                    {{ $last= date('Y')-30 }}
+                                    {{ $now = date('Y') }}
+                                    @if(isset($student_info->year))
+                                    <option value="{{ $student_info->year }}">{{ $student_info->year }}</option>
+                                    @endif
+                                    <option value="">---Select Year---</option>
+                                    @for ($i = $now; $i >= $last; $i--)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 mb-3 mt-3 ml-3">
+                                <x-input-label for="school_name_id" :value="__('School Name')" />
+                               
+                                <select  class="form-select" id="sel2" name="session">
+                                    @if(!empty($student_info->session))
+                                    <option value="{{ $student_info->session }}">{{ $student_info->session }}</option>
+                                    @endif
+                                    <option value="">---Select Session---</option>
+                                    <option>April</option>
+                                    <option>July</option>
+                                    <option>October</option>
+                                    <option>January</option>
                                 </select>
                             </div>
 
@@ -104,6 +138,40 @@
                     </form>
             </div>            
         </div>            
-    </div>            
+    </div>  
+    
+    
+    <!-- Resume Upload -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Upload Resume</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+            <form action="/student_info/upload_resume" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('post')
+                <div class="mb-3">
+                    <label for="fileUpload" class="form-label">Choose File</label>
+                    <input type="file" class="form-control" id="fileUpload" name="fileUpload">
+                </div>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+
+            </div>
+        </div>
+    </div>
 
 </x-app-layout>
